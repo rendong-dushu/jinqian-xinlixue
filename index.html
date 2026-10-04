@@ -812,6 +812,49 @@ main{width:min(1180px,calc(100% - 32px));margin:0 auto;padding:0 0 60px;isolatio
 
 /* Q7-7 暗色主题眉题对比:深底暗红 13px 小字不过 AA → 改金(金在深底天然达标,仍零 hex) */
 body[data-theme="dark"] .eyebrow,body[data-theme="brand-dark"] .eyebrow{color:var(--gold)}
+
+/* ===== 本书设计层(Step5 产出;品牌锁八成,书魂放两成) ===== */
+/* 1) accent 同族微调 — 只覆盖默认暖纸主题(其余 6 主题各有 body[data-theme] 具名块、特异性更高,不受影响):
+      标红朱 -> 对账单上被铅笔圈出的**亏损行红字**(色相 -1.5°、提饱和,像红墨水);
+      表格青 -> 账户 App 与报表头的**深钢蓝**(色相 -4°、降饱和压暗,像打印出来的旧台账);
+      勾选绿 -> 美钞与盈利栏的**钞票绿**(色相 -10°、提明度,偏黄绿的美元绿);
+      档案褐金 -> 硬币、铜章与"存档"标签的**暖金**(明度 +0.048、提饱和,像旧铜);
+      色相偏移都在 ±10° 内,只覆盖既有 token 值,不新增 token 名。
+      与站内既有 each 本逐色比对过 hex 距离:与最近的 beyond-feelings / dobelli / life-wisdom /
+      man-search / thinking-in-systems / principles / crit-think-tools / 品牌默认 / 亮色系 九组,
+      四色最小区分度 26.1。金色衍生值(--tint-accent*、--bg 金晕)跟随新金值同步。 */
+:root{
+  --red:#C22D1E;
+  --blue:#2B4D58;
+  --green:#1C975E;
+  --gold:#CF9511;
+  --tint-accent:rgba(207,149,17,.12);
+  --tint-accent-strong:rgba(207,149,17,.15);
+  --bg:radial-gradient(circle at 22% 12%, rgba(207,149,17,.18), transparent 28rem),
+       linear-gradient(135deg,#fbf6ec 0%,#efe1ca 100%);
+}
+/* 2) display 字体 — 放开的两成:换成本书专挑的**阿里巴巴普惠体**(Alibaba PuHuiTi)。理由有二:
+      一是这本书的作者是投资专栏出身、写的是可以一口气读完的通俗随笔,标题需要的是一种
+      现代、均匀、干净的界面/资讯黑体,而不是衬线宋体、楷体或中黑;二是站内 13 本已把
+      宋体(默认)、STSong、仿宋、等线、楷体、中宋、汉仪中黑七条路线占完,普惠体这一路还空着 --
+      它笔画粗细均匀、字形圆润,是"手机上看财经资讯"的质感,与 principles 那种"看打印报表"的
+      中黑形成清晰对照。带 CJK 兜底(未装普惠体的平台退回思源黑体 / 苹方),中文不会静默掉回 serif。 */
+:root{
+  --font-display:"Alibaba PuHuiTi","阿里巴巴普惠体","Noto Sans SC","Source Han Sans SC","PingFang SC","Heiti SC","Microsoft YaHei","STHeiti","STXihei",sans-serif;
+}
+/* 3) signature:hero 下缘的三根支柱 — 全书二十章反复回到的三件事,把它们压成一句可背诵的口诀:
+      **存得下**(储蓄率决定结果,第 10 章)、**熬得住**(复利与时间,第 4 章)、
+      **不出局**(生存优先于收益,第 5、13、19 章)。用「·」当分隔、0.22em 疏字距压出节奏,
+      读到的是三个动作,不是一段抒情;与 beyond-feelings 的「×/∴」公式型、thinking-in-systems
+      的「→」箭头型、principles 的「1/2/3」编号台账型在形式上明确区分。只落在 hero 既有槽位、
+      不新增 DOM、零 hex;用全角汉字(任何 CJK 字体都有字形)。 */
+.hero::after{
+  content:"存得下 · 熬得住 · 不出局";
+  display:block;margin-top:28px;
+  color:var(--gold);opacity:.88;
+  font:700 15px/1.5 var(--font-display);
+  letter-spacing:.22em;
+}
 </style>
 </head>
 <body>
@@ -856,7 +899,7 @@ body[data-theme="dark"] .eyebrow,body[data-theme="brand-dark"] .eyebrow{color:va
     </div>
 
         <div class="bd-mindmap-wrap">
-      <script type="application/json" id="bd-mindmap-data">{"layout": "chapter-span", "nodeData": {"id": "root", "topic": "金钱心理学", "root": true, "children": [{"id": "p1", "topic": "① 行为与经历 · 第1-2章", "children": [{"id": "p1-v0", "topic": "行为胜过智商", "tags": ["理财成功与智商关系不大，与行为习惯关系很大", "第1章"], "hyperLink": "#ch-1", "expanded": false, "children": [{"id": "p1-m0", "topic": "🧠 把财务决策当成行为问题而不是", "_src": "约全书2%处（序言）：作者指出理财知识建立在数学上，但知道该怎么做并不意味着头脑会照着知识运转"}]}, {"id": "p1-v1", "topic": "各有各的经历", "tags": ["没有人真的对钱失去理智，每个人的金钱观来自他独特的经历", "第1章"], "hyperLink": "#ch-1", "expanded": false, "children": [{"id": "p1-m1", "topic": "🧠 用生存概率而不是期望收益来评", "_src": "第5章：作者把财务成功概括为生存，并列出巴菲特那些没有做过的事"}]}, {"id": "p1-v2", "topic": "运气风险同源", "tags": ["运气和风险是同一股力量的两面，任何事都没有表面看来那样美好或糟糕", "第2章"], "hyperLink": "#ch-2", "expanded": false, "children": [{"id": "p1-m2", "topic": "🧠 用尾事件结构来理解成功与失败", "_src": "第6章：罗素3000指数的全部回报来自其中7%的企业，四成成分股跌去七成市值再未恢复"}]}]}, {"id": "p2", "topic": "② 知足与复利 · 第3-6章", "children": [{"id": "p2-v3", "topic": "知足最难", "tags": ["让逐利适可而止，是理财中最难也最重要的一项技能", "第3章"], "hyperLink": "#ch-3", "expanded": false, "children": [{"id": "p2-m3", "topic": "🧠 把市场波动当成门票而不是账单", "_src": "第15章：作者用迪士尼门票与罚款作对照，指出同一笔支出在不同命名下感受完全不同"}]}, {"id": "p2-v4", "topic": "复利靠时间", "tags": ["巨大的结果不需要巨大的力量，复利靠的是时间而不是强度", "第4章"], "hyperLink": "#ch-4", "expanded": false, "children": [{"id": "p2-m4", "topic": "🧠 先确认自己玩的是什么游戏", "_src": "第16章：作者建议尽可能明确自己的投资目标，且不受他人活动与行为的影响"}]}, {"id": "p2-v5", "topic": "守富比致富难", "tags": ["致富和守富是两种完全不同的技能，生存该成为一切策略的地基", "第5章"], "hyperLink": "#ch-5", "expanded": false, "children": [{"id": "p2-m5", "topic": "🧠 给每一个预测留出容错区间", "_src": "第13章：作者把自己的预期回报定得比历史均值低三分之一，作为自己的安全边际"}]}, {"id": "p2-v6", "topic": "尾事件定胜负", "tags": ["尾事件驱动一切，你即使错了一半也依然能赢", "第6章"], "hyperLink": "#ch-6", "expanded": false}]}, {"id": "p3", "topic": "③ 看不见的财富 · 第7-10章", "children": [{"id": "p3-v7", "topic": "自由来自掌控时间", "tags": ["财富最大的红利不是消费能力，是对时间的掌控", "第7章"], "hyperLink": "#ch-7", "expanded": false}, {"id": "p3-v8", "topic": "没人在意你的财产", "tags": ["别人远没有你以为的那样在意你有多少财产", "第8章"], "hyperLink": "#ch-8", "expanded": false}, {"id": "p3-v9", "topic": "财富是没花的钱", "tags": ["财富恰恰是那些你没花掉的钱，炫富是让财富流失最快的途径", "第9章"], "hyperLink": "#ch-9", "expanded": false}, {"id": "p3-v10", "topic": "储蓄率说了算", "tags": ["财富积累与收入和回报率关系不大，与储蓄率关系很大", "第10章"], "hyperLink": "#ch-10", "expanded": false}]}, {"id": "p4", "topic": "④ 为意外留余地 · 第11-15章", "children": [{"id": "p4-v11", "topic": "合乎情理才拿得住", "tags": ["合乎情理胜过绝对理性，能坚持下去的方案才是好方案", "第11章"], "hyperLink": "#ch-11", "expanded": false}, {"id": "p4-v12", "topic": "历史不是地图", "tags": ["历史是变化的记录，不能当作预测未来的地图", "第12章"], "hyperLink": "#ch-12", "expanded": false}, {"id": "p4-v13", "topic": "容错空间被低估", "tags": ["容错空间是金融领域最被低估的一种力量", "第13章"], "hyperLink": "#ch-13", "expanded": false}, {"id": "p4-v14", "topic": "波动是入场费", "tags": ["波动是获得回报的入场费，不是该躲开的罚款", "第15章"], "hyperLink": "#ch-15", "expanded": false}]}, {"id": "p5", "topic": "⑤ 心态与叙事 · 第16-18章", "children": [{"id": "p5-v15", "topic": "别抄别人的玩法", "tags": ["别向和你玩着不同游戏的人学理财", "第16章"], "hyperLink": "#ch-16", "expanded": false}, {"id": "p5-v16", "topic": "悲观更聪明但更错", "tags": ["悲观听起来更聪明，但乐观更接近事实", "第17章"], "hyperLink": "#ch-17", "expanded": false}, {"id": "p5-v17", "topic": "故事更会骗你", "tags": ["故事比数据更有力量，也更容易骗你", "第18章"], "hyperLink": "#ch-18", "expanded": false}]}]}}</script>
+      <script type="application/json" id="bd-mindmap-data">{"layout": "chapter-span", "nodeData": {"id": "root", "topic": "金钱心理学", "root": true, "children": [{"id": "p1", "topic": "① 行为与经历 · 第1-2章", "children": [{"id": "p1-v0", "topic": "行为胜过智商", "tags": ["理财成功与智商关系不大，与行为习惯关系很大", "第1章"], "hyperLink": "#ch-1", "expanded": false, "children": [{"id": "p1-k0-0", "topic": "🧠 行为问题不是数学题", "_src": "序言 · 心智模型"}]}, {"id": "p1-v1", "topic": "各有各的经历", "tags": ["没有人真的对钱失去理智，每个人的金钱观来自他独特的经历", "第1章"], "hyperLink": "#ch-1", "expanded": false}, {"id": "p1-v2", "topic": "运气风险同源", "tags": ["运气和风险是同一股力量的两面，任何事都没有表面看来那样美好或糟糕", "第2章"], "hyperLink": "#ch-2", "expanded": false, "children": [{"id": "p1-k2-0", "topic": "💡 运气与风险", "_src": "第2章 · 概念"}, {"id": "p1-k2-1", "topic": "📚 《随机漫步的傻瓜》", "_src": "enrich · 跨书回声"}]}]}, {"id": "p2", "topic": "② 知足与复利 · 第3-6章", "children": [{"id": "p2-v3", "topic": "知足最难", "tags": ["让逐利适可而止，是理财中最难也最重要的一项技能", "第3章"], "hyperLink": "#ch-3", "expanded": false, "children": [{"id": "p2-k3-0", "topic": "💡 知足", "_src": "第3章 · 概念"}, {"id": "p2-k3-1", "topic": "📚 《别把你的钱留到死》·反驳", "_src": "enrich · 跨书回声"}]}, {"id": "p2-v4", "topic": "复利靠时间", "tags": ["巨大的结果不需要巨大的力量，复利靠的是时间而不是强度", "第4章"], "hyperLink": "#ch-4", "expanded": false, "children": [{"id": "p2-k4-0", "topic": "💡 复利的时间效应", "_src": "第4章 · 概念"}, {"id": "p2-k4-1", "topic": "📚 《长赢投资》", "_src": "enrich · 跨书回声"}]}, {"id": "p2-v5", "topic": "守富比致富难", "tags": ["致富和守富是两种完全不同的技能，生存该成为一切策略的地基", "第5章"], "hyperLink": "#ch-5", "expanded": false, "children": [{"id": "p2-k5-0", "topic": "💡 守富", "_src": "第5章 · 概念"}, {"id": "p2-k5-1", "topic": "🧠 用生存概率评估方案", "_src": "第5章 · 心智模型"}]}, {"id": "p2-v6", "topic": "尾事件定胜负", "tags": ["尾事件驱动一切，你即使错了一半也依然能赢", "第6章"], "hyperLink": "#ch-6", "expanded": false, "children": [{"id": "p2-k6-0", "topic": "💡 尾事件", "_src": "第6章 · 概念"}, {"id": "p2-k6-1", "topic": "🧠 用尾事件结构看成败", "_src": "第6章 · 心智模型"}]}]}, {"id": "p3", "topic": "③ 看不见的财富 · 第7-10章", "children": [{"id": "p3-v7", "topic": "自由来自掌控时间", "tags": ["财富最大的红利不是消费能力，是对时间的掌控", "第7章"], "hyperLink": "#ch-7", "expanded": false, "children": [{"id": "p3-k7-0", "topic": "💡 时间自由", "_src": "第7章 · 概念"}]}, {"id": "p3-v8", "topic": "没人在意你的财产", "tags": ["别人远没有你以为的那样在意你有多少财产", "第8章"], "hyperLink": "#ch-8", "expanded": false, "children": [{"id": "p3-k8-0", "topic": "💡 豪车悖论", "_src": "第8章 · 概念"}]}, {"id": "p3-v9", "topic": "财富是没花的钱", "tags": ["财富恰恰是那些你没花掉的钱，炫富是让财富流失最快的途径", "第9章"], "hyperLink": "#ch-9", "expanded": false, "children": [{"id": "p3-k9-0", "topic": "💡 财富的隐蔽性", "_src": "第9章 · 概念"}, {"id": "p3-k9-1", "topic": "📚 《邻家的百万富翁》", "_src": "enrich · 跨书回声"}]}, {"id": "p3-v10", "topic": "储蓄率说了算", "tags": ["财富积累与收入和回报率关系不大，与储蓄率关系很大", "第10章"], "hyperLink": "#ch-10", "expanded": false, "children": [{"id": "p3-k10-0", "topic": "💡 储蓄率", "_src": "第10章 · 概念"}, {"id": "p3-k10-1", "topic": "⚖️ 涨薪后先不升级生活", "_src": "第10章 · 决策规则"}]}]}, {"id": "p4", "topic": "④ 为意外留余地 · 第11-15章", "children": [{"id": "p4-v11", "topic": "合乎情理才拿得住", "tags": ["合乎情理胜过绝对理性，能坚持下去的方案才是好方案", "第11章"], "hyperLink": "#ch-11", "expanded": false, "children": [{"id": "p4-k11-0", "topic": "💡 合乎情理的决策", "_src": "第11章 · 概念"}, {"id": "p4-k11-1", "topic": "⚖️ 先问睡不睡得着", "_src": "第11章 · 决策规则"}]}, {"id": "p4-v12", "topic": "历史不是地图", "tags": ["历史是变化的记录，不能当作预测未来的地图", "第12章"], "hyperLink": "#ch-12", "expanded": false, "children": [{"id": "p4-k12-0", "topic": "⚖️ 把预测当对过去的描述", "_src": "第12章 · 决策规则"}]}, {"id": "p4-v13", "topic": "容错空间被低估", "tags": ["容错空间是金融领域最被低估的一种力量", "第13章"], "hyperLink": "#ch-13", "expanded": false, "children": [{"id": "p4-k13-0", "topic": "💡 容错空间", "_src": "第13章 · 概念"}, {"id": "p4-k13-1", "topic": "🧠 给预测留容错区间", "_src": "第13章 · 心智模型"}, {"id": "p4-k13-2", "topic": "⚖️ 预期回报下调三分之一", "_src": "第13章 · 决策规则"}]}, {"id": "p4-v14", "topic": "波动是入场费", "tags": ["波动是获得回报的入场费，不是该躲开的罚款", "第15章"], "hyperLink": "#ch-15", "expanded": false, "children": [{"id": "p4-k14-0", "topic": "💡 入场费心理", "_src": "第15章 · 概念"}, {"id": "p4-k14-1", "topic": "🧠 把波动当门票不是账单", "_src": "第15章 · 心智模型"}, {"id": "p4-k14-2", "topic": "⚖️ 浮亏时检查策略", "_src": "第15章 · 决策规则"}]}]}, {"id": "p5", "topic": "⑤ 心态与叙事 · 第16-18章", "children": [{"id": "p5-v15", "topic": "别抄别人的玩法", "tags": ["别向和你玩着不同游戏的人学理财", "第16章"], "hyperLink": "#ch-16", "expanded": false, "children": [{"id": "p5-k15-0", "topic": "💡 玩自己的游戏", "_src": "第16章 · 概念"}, {"id": "p5-k15-1", "topic": "🧠 先确认自己玩什么游戏", "_src": "第16章 · 心智模型"}]}, {"id": "p5-v16", "topic": "悲观更聪明但更错", "tags": ["悲观听起来更聪明，但乐观更接近事实", "第17章"], "hyperLink": "#ch-17", "expanded": false, "children": [{"id": "p5-k16-0", "topic": "💡 悲观主义的诱惑", "_src": "第17章 · 概念"}]}, {"id": "p5-v17", "topic": "故事更会骗你", "tags": ["故事比数据更有力量，也更容易骗你", "第18章"], "hyperLink": "#ch-18", "expanded": false, "children": [{"id": "p5-k17-0", "topic": "💡 故事驱动", "_src": "第18章 · 概念"}, {"id": "p5-k17-1", "topic": "📚 《非理性繁荣》", "_src": "enrich · 跨书回声"}]}]}]}}</script>
       <div id="bd-mindmap">
         <div class="mm-stage" aria-hidden="false"></div>
         <div class="mm-toolbar">
